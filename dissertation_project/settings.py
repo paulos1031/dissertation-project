@@ -13,7 +13,7 @@ SECRET_KEY = '$lmg1sp2=uy87#wgk4@h3-u#h9m1@fawqipnr_^o$i%zh)fvt*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['paulos1031.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -108,6 +108,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/paulos1031/dissertation-project/static'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'dashboard-home'
 LOGIN_URL = 'login'
