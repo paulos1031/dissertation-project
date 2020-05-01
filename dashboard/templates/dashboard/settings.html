@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+  {% if user.is_superuser %}
+    {% if messages %}
+      <ul class="messages">
+        {% for msg in messages %}
+          <li>
+              <div class="alert alert-{{msg.level_tag}}" role="alert">
+              {{msg.message}}
+              </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+    <div class='row'>
+      <div class='col-sm-4'>
+        </div>
+      <div class='col-sm-4' data-toggle="tooltip" title="To update statistics, export the updated 'employee statisics' spreadsheet as a .CSV file, then upload the new file here">
+        <div class="centre">
+      <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <h2>Update User Statistics</h2>
+        <input type="file" name="file">
+        <button type="submit">Upload</button><a> File must be in .CSV format</a>
+      </form>
+        </div>
+    </div>
+    {% endif %}
+  {% endif %}
+{% endblock content %}
