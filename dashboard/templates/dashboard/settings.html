@@ -1,7 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
   {% if user.is_superuser %}
-    {% if messages %}
+    {% if messages %} <!-- If there are pending error messages -->
       <ul class="messages">
         {% for msg in messages %}
           <li>
@@ -11,7 +11,7 @@
           </li>
         {% endfor %}
       </ul>
-    {% else %}
+    {% else %} <!-- Create CSV upload form -->
     <div class='row'>
       <div class='col-sm-4'>
         </div>
@@ -26,5 +26,13 @@
         </div>
     </div>
     {% endif %}
+  {% else %} <!-- If user isn't a superuser -->
+    <div class='row'>
+      <div class='col-sm-12'>
+        <div class="centre">
+          <h2>Admin Access Required to Update User Statistics</h2>
+        </div>
+      </div>
+    </div>
   {% endif %}
 {% endblock content %}
