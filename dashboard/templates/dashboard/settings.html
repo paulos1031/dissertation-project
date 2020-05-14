@@ -13,9 +13,7 @@
       </ul>
     {% else %} <!-- Create CSV upload form -->
     <div class='row'>
-      <div class='col-sm-4'>
-        </div>
-      <div class='col-sm-4' data-toggle="tooltip" title="To update statistics, export the updated 'employee statisics' spreadsheet as a .CSV file, then upload the new file here">
+      <div class='col-sm-12' data-toggle="tooltip" title="To update statistics, export the updated 'employee statisics' spreadsheet as a .CSV file, then upload the new file here">
         <div class="centre">
       <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
