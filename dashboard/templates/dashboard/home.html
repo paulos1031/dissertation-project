@@ -43,8 +43,12 @@
           options: {
               scales: {
                   yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Number of Tickets Closed by Agent',
                       ticks: {
                           beginAtZero: true, precision:0
+                        }
                       }
                   }]
               }
@@ -87,8 +91,12 @@
               options: {
                   scales: {
                       yAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Number of Counter Queries Taken by Agent',
                           ticks: {
                               beginAtZero: true, precision:0
+                            }
                           }
                       }]
                   }
@@ -138,9 +146,13 @@
                 options: {
                     scales: {
                         yAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Phone Calls Taken by Agent',
                             ticks: {
                                 beginAtZero: true, precision:0
                             }
+                          }
                         }]
                     }
                 }
@@ -192,9 +204,13 @@
             options: {
                 scales: {
                     yAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: "Number of Tickets that have Breached SLA within Agent's Queue",
                         ticks: {
                             beginAtZero: true, precision:0
                         }
+                      }
                     }]
                 }
             }
@@ -243,9 +259,13 @@
               options: {
                   scales: {
                       yAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Number of Live Chats Taken by Agent',
                           ticks: {
-                              beginAtZero: true, precision:0
+                              beginAtZero: true, precision:0,
                           }
+                        }
                       }]
                   }
               }

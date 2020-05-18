@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from dashboard.views import data_upload, leaderboard
+from dashboard.views import data_upload, leaderboard, help
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='dashboard/logout.html'), name='logout'),
     path('settings/', data_upload, name='settings'),
     path('leaderboard/', leaderboard, name='leaderboard'),
+    path('help/', help, name='help'),
 ]

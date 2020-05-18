@@ -90,3 +90,7 @@ def leaderboard(request):
         'total_score': total_score,
         'print_winner': print_winner,
     })
+
+
+def help(request):
+    return render(request, 'dashboard/help.html')
