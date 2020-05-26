@@ -12,61 +12,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/b45cc4b819.js" crossorigin="anonymous"></script>
 
-    {% if title %}
-      <title>BU IT - {{ title }}</title>
-    {% else %}
-      <title>BU IT</title>
-    {% endif %}
   </head>
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <a href="{% url 'dashboard-home' %}">
-        <img src="{% static "dashboard/BU-Logo.png" %}" alt="BU Logo" style="width:158px;height:32px;" data-toggle="tooltip" title="Return to the 'Dashboard' page">
+        <img src="{% static "dashboard/BU-Logo 2.png" %}" alt="BU Logo" style="width:158px;height:40px;" data-toggle="tooltip" title="Return to the 'Dashboard' page">
         </a>
-        <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'dashboard-home' %}" data-toggle="tooltip" title="Display Individual Team Statistics">Dashboard</a>
+              <a class="nav-item nav-link" href="{% url 'dashboard-home' %}" data-toggle="tooltip" title="Display Individual Team Statistics"></a>
               <span style="font-size: 1.6em; color: #e0e0e0;"> <i class="fas fa-chart-line"></i> </span>
-              <a class="nav-item nav-link" </a>
-              <a class="nav-item nav-link" href="{% url 'leaderboard' %}" data-toggle="tooltip" title="Display Overall Team Statistics">Leaderboard</a>
+              <a class="nav-item nav-link" href="{% url 'dashboard-home' %}" data-toggle="tooltip" title="Display Individual Team Statistics">Dashboard</a>
+              <a class="nav-item nav-link" href="{% url 'dashboard-home' %}" data-toggle="tooltip" title="Display Individual Team Statistics"></a>
               <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-trophy"></i> </span>
-              <a class="nav-item nav-link" </a>
+              <a class="nav-item nav-link" href="{% url 'leaderboard' %}" data-toggle="tooltip" title="Display Overall Team Statistics">Leaderboard</a>
+              <a class="nav-item nav-link" href="{% url 'leaderboard' %}" data-toggle="tooltip" title="Display Overall Team Statistics"></a>
               {% if user.is_superuser %}
-                <a class="nav-item nav-link" href="{% url 'settings' %}" data-toggle="tooltip" title="Modify Site Options">Settings</a>
-                <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-cog"></i> </span>
-                <a class="nav-item nav-link" </a>
+                <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-file-import"></i> </span>
+                <a class="nav-item nav-link" href="{% url 'settings' %}" data-toggle="tooltip" title="Upload a CSV File to Update Site Statistics">Import</a>
+                <a class="nav-item nav-link" href="{% url 'settings' %}" data-toggle="tooltip" title="Upload a CSV File to Update Site Statistics"></a>
               {% endif %}
-              <a class="nav-item nav-link" href="{% url 'help' %}" data-toggle="tooltip" title="View Additional Site Information">Help</a>
               <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-info-circle"></i></span>
+              <a class="nav-item nav-link" href="{% url 'help' %}" data-toggle="tooltip" title="View Additional Site Information">Help</a>
             </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
           {% if user.is_authenticated %} <!-- Changes navigation links, depending on if the user is already logged or an admin/superuser -->
-            <a class="nav-item nav-link" href="{% url 'logout' %}" data-toggle="tooltip" title="Sign Out and Redirect to Logout Page">Logout</a>
             <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-sign-out-alt"></i> </span>
+            <a class="nav-item nav-link" href="{% url 'logout' %}" data-toggle="tooltip" title="Sign Out and Redirect to Logout Page">Logout</a>
             {% if user.is_superuser %} <!-- Space between the logout and admin hyperlinks -->
-              <a class="nav-item nav-link" </a>
+              <a class="nav-item nav-link" href="{% url 'logout' %}" data-toggle="tooltip" title="Sign Out and Redirect to Logout Page"></a>
             {% endif %}
             {% if user.is_superuser %}
+            <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-users-cog"></i> </span>
               <a class="nav-item nav-link" href="/admin" data-toggle="tooltip" title="Manage Users and Chart Data">Admin</a>
-              <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-users-cog"></i> </span>
             {% endif %}
           {% else %}
-            <a class="nav-item nav-link" href="{% url 'login' %}" data-toggle="tooltip" title="Sign In and Access Site">Login</a>
             <span style="font-size: 1.5em; color: #e0e0e0;"><i class="fas fa-sign-in-alt"></i> </span>
+            <a class="nav-item nav-link" href="{% url 'login' %}" data-toggle="tooltip" title="Sign In and Access Site">Login</a>
           {% endif %}
         </div>
-      </div>
     </div>
   </nav>
 </header>
 </body>
 {% block content %}
-{% endblock %}
-
+{% endblock content %}
 </html>

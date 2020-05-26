@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserData
 import operator
+from django.utils.datastructures import MultiValueDictKeyError
 
 # Loads the dashboard and assigns table data to variables, for use in charts
 @login_required
@@ -43,31 +44,34 @@ def data_upload(request):
 
     if request.method == "GET":
         return render(request, template, context)
+    try:
+        csv_file = request.FILES['file']
+        if not csv_file.name.endswith('.csv'):
+            messages.warning(request, 'This is not a CSV file! Please try again and input a CSV file')
+            return render(request, template, context)
 
-    csv_file = request.FILES['file']
-    if not csv_file.name.endswith('.csv'):
-        messages.warning(request, 'This is not a CSV file! Please try again and input a CSV file')
+        data_set = csv_file.read().decode('UTF-8')
+        UserData.objects.all().delete()  # Remove previous data
+        io_string = io.StringIO(data_set)
+        next(io_string)  # Skip CSV header
+        for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+            _, created = UserData.objects.update_or_create(  # Assign each column of the CSV file to the UserData table
+                rank_position=column[0],
+                first_name=column[1],
+                calls_answered=column[2],
+                tickets_closed=column[3],
+                average_survey_score=column[4],
+                counter_queries_taken=column[5],
+                chats_taken=column[6],
+                breached_tickets=column[7],
+                total_score=column[8]
+            )
+
+        messages.success(request, 'File successfully uploaded! Dashboard and Leaderboard changes will now take effect')
         return render(request, template, context)
-
-    data_set = csv_file.read().decode('UTF-8')
-    UserData.objects.all().delete()  # Remove previous data
-    io_string = io.StringIO(data_set)
-    next(io_string)  # Skip CSV header
-    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-        _, created = UserData.objects.update_or_create(  # Assign each column of the CSV file to the UserData table
-            rank_position=column[0],
-            first_name=column[1],
-            calls_answered=column[2],
-            tickets_closed=column[3],
-            average_survey_score=column[4],
-            counter_queries_taken=column[5],
-            chats_taken=column[6],
-            breached_tickets=column[7],
-            total_score=column[8]
-        )
-
-    messages.success(request, 'File successfully uploaded! Dashboard and Leaderboard changes will now take effect')
-    return render(request, template, context)
+    except MultiValueDictKeyError:
+        messages.warning(request, 'Please choose a valid CSV file before pressing Upload!')
+        return render(request, template, context)
 
 
 @login_required

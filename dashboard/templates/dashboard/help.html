@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block content %}
+<title>Help</title>
 <div class='row'>
   <div class='col-sm-12'>
     <div class="centre">
@@ -28,7 +29,7 @@
     <div class="centre">
      <h4>How do I update the chart data?</h4>
      </div>
-    <p>Download the <a href="{% static "dashboard/Employee Statistics.xlsx" %}" download>attached</a> spreadsheet, then update the placeholder names and data to the required values. Once updated, export the spreadsheet as a .CSV file format, then visit the website's Settings page, while signed in with an Admin/Supervisor level account. Choose the .CSV file to upload, then press Upload. The chart changes to the Dashboard and Leaderboard should now take effect. You can also update individual statistics through the admin page, through the 'User Data' link. </p>
+    <p>Download the <a href="{% static "dashboard/Employee Statistics.xlsx" %}" download>attached</a> spreadsheet, then update the placeholder names and data to the required values. Once updated, export the spreadsheet as a .CSV file format, then visit the website's Import page, while signed in with an Admin/Supervisor level account. Choose the .CSV file to upload, then press Upload. The chart changes to the Dashboard and Leaderboard should now take effect. You can also update individual statistics through the admin page, through the 'User Data' link. </p>
   </div>
   <div class='col-sm-3'>
     <div class="centre">

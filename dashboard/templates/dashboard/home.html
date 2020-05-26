@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<title>Dashboard</title>
 <!-- Top Row of charts -->
 <div class='row'>
   <div class='col-sm-3' data-toggle="tooltip" title="Number of tickets set to the resolved status type, by an individual within ServiceNow">
@@ -15,18 +16,6 @@
                   label: 'Tickets Closed',
                   data: {{ tickets_closed|safe }},
                   backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)',
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-
-                  ],
-                  borderColor: [
                       'rgba(255, 99, 132, 1)',
                       'rgba(54, 162, 235, 1)',
                       'rgba(255, 206, 86, 1)',
@@ -36,12 +25,20 @@
                       'rgba(255, 99, 132, 1)',
                       'rgba(54, 162, 235, 1)',
                       'rgba(255, 206, 86, 1)',
+
                   ],
-                  borderWidth: 1
               }]
           },
           options: {
+            legend: {
+            display: false
+          },
               scales: {
+                xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
                   yAxes: [{
                     scaleLabel: {
                       display: true,
@@ -69,30 +66,31 @@
                   datasets: [{
                       label: 'Counter Queries Taken',
                       data: {{ counter_queries_taken|safe }},
+                      fill: false,
+                      borderColor: '#1e88e5',
                       backgroundColor: [
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
                       ],
-                      borderColor: [
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(54, 162, 235, 1)',
-                      ],
-                      borderWidth: 1
                   }]
               },
               options: {
+                legend: {
+                display: false
+              },
                   scales: {
+                    xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
                       yAxes: [{
                         scaleLabel: {
                           display: true,
@@ -114,41 +112,36 @@
             <script>
             var ctx3 = document.getElementById('myChart3').getContext('2d');
             var myChart3 = new Chart(ctx3, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: {{ names|safe }},
                     datasets: [{
                         label: 'Calls Answered',
                         data: {{ calls_answered|safe }},
                         backgroundColor: [
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
 
                         ],
-                        borderColor: [
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-
-                        ],
-                        borderWidth: 1
                     }]
                 },
                 options: {
+                  legend: {
+                  display: false
+                },
                     scales: {
+                      xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
                         yAxes: [{
                           scaleLabel: {
                             display: true,
@@ -173,50 +166,34 @@
         <script>
         var ctx4 = document.getElementById('myChart4').getContext('2d');
         var myChart4 = new Chart(ctx4, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
                 labels: {{ names|safe }},
                 datasets: [{
                     label: 'Breached Tickets',
                     data: {{ breached_tickets|safe }},
                     backgroundColor: [
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
 
                     ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                    ],
-                    borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                      scaleLabel: {
+              legend: {
+              position: 'bottom'
+            },
+                      title: {
                         display: true,
-                        labelString: "Number of Tickets that have Breached SLA within Agent's Queue",
-                        ticks: {
-                            beginAtZero: true, precision:0
-                        }
+                        text: "Number of Tickets that have Breached SLA within Agent's Queue",
                       }
-                    }]
-                }
             }
         });
         </script>
@@ -228,50 +205,34 @@
           <script>
           var ctx5 = document.getElementById('myChart5').getContext('2d');
           var myChart5 = new Chart(ctx5, {
-              type: 'bar',
+              type: 'polarArea',
               data: {
                   labels: {{ names|safe }},
                   datasets: [{
                       label: 'Chats Taken',
                       data: {{ chats_taken|safe }},
                       backgroundColor: [
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)',
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
 
-                      ],
-                      borderColor: [
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)',
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                      ],
-                      borderWidth: 1
+                      ]
                   }]
               },
               options: {
-                  scales: {
-                      yAxes: [{
-                        scaleLabel: {
-                          display: true,
-                          labelString: 'Number of Live Chats Taken by Agent',
-                          ticks: {
-                              beginAtZero: true, precision:0,
-                          }
-                        }
-                      }]
-                  }
+                legend: {
+                position: 'bottom'
+              },
+                    title: {
+                    display: true,
+                    text: 'Number of Live Chats Taken by Agent',
+                  },
               }
           });
           </script>

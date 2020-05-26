@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
+<title>Import</title>
   {% if user.is_superuser %}
     {% if messages %} <!-- If there are pending error messages -->
       <ul class="messages">
@@ -32,5 +33,6 @@
         </div>
       </div>
     </div>
-  {% endif %}
-{% endblock content %}
+    </div>
+   {% endif %}
+  {% endblock content %}

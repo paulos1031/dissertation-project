@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<title>Login</title>
   {% if user.is_authenticated %}
     <meta http-equiv="Refresh" content="0; url={% url 'dashboard-home' %}" /> <!-- If user is already logged in, redirect to the homepage -->
   {% endif %}
