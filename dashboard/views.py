@@ -60,11 +60,10 @@ def data_upload(request):
                 first_name=column[1],
                 calls_answered=column[2],
                 tickets_closed=column[3],
-                average_survey_score=column[4],
-                counter_queries_taken=column[5],
-                chats_taken=column[6],
-                breached_tickets=column[7],
-                total_score=column[8]
+                counter_queries_taken=column[4],
+                chats_taken=column[5],
+                breached_tickets=column[6],
+                total_score=column[7]
             )
 
         messages.success(request, 'File successfully uploaded! Dashboard and Leaderboard changes will now take effect')
