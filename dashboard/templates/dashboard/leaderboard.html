@@ -40,7 +40,7 @@
             },
                         scaleLabel: {
                           display: true,
-                          labelString: "Combined Score of Agent's Individual Statistics (-50 for each Breached Ticket)",
+                          labelString: "Total Score of Agent",
                           ticks: {
                               beginAtZero: true, precision:0
                             }
@@ -59,6 +59,7 @@
       <div class="centre" data-toggle="tooltip" title="Total score is calculated by adding together all individual statistics (e.g. calls taken & tickets closed), then removing 50 points for each breached ticket">
         <h2>Current Champion is:</h2>
         <h2>{{print_winner}}</h2>
+        <small class="text-muted">*Total Score is calculated by adding together all individual statistics (e.g. calls taken & tickets closed), then removing 50 points for each breached ticket</small>
         </div>
       </div>
   </div>

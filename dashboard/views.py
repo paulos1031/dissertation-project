@@ -71,6 +71,9 @@ def data_upload(request):
     except MultiValueDictKeyError:
         messages.warning(request, 'Please choose a valid CSV file before pressing Upload!')
         return render(request, template, context)
+    except ValueError:
+        messages.warning(request, 'Data within the CSV file has not been formatted correctly! Please check the Help page for assistance')
+        return render(request, template, context)
 
 
 @login_required
